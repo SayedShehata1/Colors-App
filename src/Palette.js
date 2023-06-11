@@ -30,7 +30,7 @@ class Palette extends Component {
           background={color[format]}
           name={color.name}
           moreUrl={`/palette/${id}/${color.id}`}
-          showLink
+          showingFullPalette
         />
       );
     });
