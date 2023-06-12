@@ -12,8 +12,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "./DraggableColorBox";
+import DraggableColorList from "./DraggableColorList";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { arrayMoveImmutable } from "array-move";
 
 const drawerWidth = 400;
 
@@ -122,6 +123,9 @@ const NewPaletteForm = ({ savePalette, history, palettes }) => {
   const removeColor = (colorName) => {
     setColors(colors.filter((color) => color.name !== colorName));
   };
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(arrayMoveImmutable(colors, oldIndex, newIndex));
+  };
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -174,7 +178,6 @@ const NewPaletteForm = ({ savePalette, history, palettes }) => {
         </DrawerHeader>
         <Divider />
         {/* Content Goes Here */}
-
         {/* Drawer Content */}
 
         <Typography variant="h4">Design Your Palette</Typography>
@@ -215,16 +218,12 @@ const NewPaletteForm = ({ savePalette, history, palettes }) => {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        {colors.map((color) => {
-          return (
-            <DraggableColorBox
-              color={color.color}
-              name={color.name}
-              key={color.name}
-              handleClick={() => removeColor(color.name)}
-            />
-          );
-        })}
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </Main>
     </Box>
   );
