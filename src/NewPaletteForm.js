@@ -13,12 +13,14 @@ import Typography from "@mui/material/Typography";
 import classNames from "classnames";
 import Button from "@mui/material/Button";
 import { ChromePicker } from "react-color";
+import DraggableColorBox from "./DraggableColorBox";
 
 const drawerWidth = 400;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
+    height: "calc(100vh - 64px)",
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -147,15 +149,9 @@ const NewPaletteForm = () => {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <ul>
-          {colors.map((color) => {
-            return (
-              <li style={{ backgroundColor: color }} key={color}>
-                {color}
-              </li>
-            );
-          })}
-        </ul>
+        {colors.map((color) => {
+          return <DraggableColorBox color={color} />;
+        })}
       </Main>
     </Box>
   );
