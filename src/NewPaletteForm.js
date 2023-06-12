@@ -1,3 +1,4 @@
+import * as React from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar from "@mui/material/AppBar";
@@ -9,9 +10,11 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import classNames from "classnames";
+import Button from "@mui/material/Button";
+import { ChromePicker } from "react-color";
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -58,8 +61,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function NewPaletteForm() {
+const NewPaletteForm = () => {
   const [open, setOpen] = React.useState(false);
+  const [currentColor, setCurrentColor] = React.useState("teal");
+  const [colors, setColors] = React.useState(["red", "green"]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -67,6 +72,12 @@ export default function NewPaletteForm() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const updateCurrentColor = (newColor) => {
+    setCurrentColor(newColor.hex);
+  };
+  const addNewColor = () => {
+    setColors([...colors, currentColor]);
   };
 
   return (
@@ -108,10 +119,46 @@ export default function NewPaletteForm() {
         </DrawerHeader>
         <Divider />
         {/* Content Goes Here */}
+
+        {/* Drawer Content */}
+
+        <Typography variant="h4">Design Your Palette</Typography>
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random Color
+          </Button>
+        </div>
+
+        <ChromePicker
+          color={currentColor}
+          onChangeComplete={updateCurrentColor}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: currentColor }}
+          onClick={addNewColor}
+        >
+          Add Color
+        </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <ul>
+          {colors.map((color) => {
+            return (
+              <li style={{ backgroundColor: color }} key={color}>
+                {color}
+              </li>
+            );
+          })}
+        </ul>
       </Main>
     </Box>
   );
-}
+};
+
+export default NewPaletteForm;
