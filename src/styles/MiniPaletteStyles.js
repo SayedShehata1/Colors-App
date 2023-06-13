@@ -5,9 +5,9 @@ const styles = {
     borderRadius: "5px",
     padding: "0.5rem",
     position: "relative",
-    overflow: "hidden",
-    "&:hover": {
-      cursor: "pointer",
+    cursor: "pointer",
+    "&:hover svg": {
+      opacity: 1,
     },
   },
   colors: {
@@ -24,7 +24,6 @@ const styles = {
     margin: "0",
     color: "black",
     paddingTop: "0.5rem",
-    paddingBottom: "1rem",
     fontSize: "1rem",
     position: "relative",
   },
