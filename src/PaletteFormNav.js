@@ -7,8 +7,7 @@ import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import React, { Component } from "react";
-import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
-
+import PaletteMetaForm from "./PaletteMetaForm";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 400;
@@ -37,23 +36,20 @@ const AppBar = styled(MuiAppBar, {
 class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
-    this.state = { newPaletteName: "" };
+    this.state = { newPaletteName: "", formShwoing: false };
+    this.showForm = this.showForm.bind(this);
   }
-  componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", (value) =>
-      this.props.palettes.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
-  }
+
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
   };
+  showForm() {
+    this.setState({ formShwoing: true });
+  }
   render() {
-    const { open } = this.props;
-    const { newPaletteName } = this.state;
+    const { open, palettes, handleSubmit } = this.props;
     return (
       <div>
         <CssBaseline />
@@ -74,28 +70,28 @@ class PaletteFormNav extends Component {
           </Toolbar>
           {/* Save Palette Form */}
           <div>
-            <ValidatorForm
-              onSubmit={() => this.props.handleSubmit(newPaletteName)}
-            >
-              <TextValidator
-                label="Palette Name"
-                value={this.state.newPaletteName}
-                name="newPaletteName"
-                onChange={this.handleChange}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={["Enter Palette Name", "Name already used"]}
-              />
-              <Button variant="contained" color="primary" type="submit">
-                Save Palette
-              </Button>
-            </ValidatorForm>
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Button variant="contained" color="secondary">
+              <Button
+                style={{ marginRight: "1rem" }}
+                variant="contained"
+                color="secondary"
+              >
                 Go Back
               </Button>
             </Link>
+            <Button
+              style={{ marginRight: "1rem" }}
+              variant="contained"
+              onClick={this.showForm}
+              color="primary"
+            >
+              Save
+            </Button>
           </div>
         </AppBar>
+        {this.state.formShwoing && (
+          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+        )}
       </div>
     );
   }
