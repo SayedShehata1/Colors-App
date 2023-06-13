@@ -38,6 +38,7 @@ class PaletteFormNav extends Component {
     super(props);
     this.state = { newPaletteName: "", formShwoing: false };
     this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
   }
 
   handleChange = (evt) => {
@@ -47,6 +48,9 @@ class PaletteFormNav extends Component {
   };
   showForm() {
     this.setState({ formShwoing: true });
+  }
+  hideForm() {
+    this.setState({ formShwoing: false });
   }
   render() {
     const { open, palettes, handleSubmit } = this.props;
@@ -90,7 +94,11 @@ class PaletteFormNav extends Component {
           </div>
         </AppBar>
         {this.state.formShwoing && (
-          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+          <PaletteMetaForm
+            palettes={palettes}
+            handleSubmit={handleSubmit}
+            hideForm={this.hideForm}
+          />
         )}
       </div>
     );
