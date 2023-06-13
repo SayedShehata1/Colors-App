@@ -12,33 +12,16 @@ import DraggableColorList from "./DraggableColorList";
 import { arrayMoveImmutable } from "array-move";
 import ColorPickerForm from "./ColorPickerForm";
 import { withStyles } from "@material-ui/styles";
+import styles from "./styles/NewPaletteFormStyles";
+import { DRAWER_WIDTH } from "./constants";
 
-const styles = {
-  container: {
-    width: "90%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "0 auto",
-  },
-  buttons: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-around",
-  },
-  button: {
-    width: "45%",
-  },
-};
-const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     height: "calc(100vh - 64px)",
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

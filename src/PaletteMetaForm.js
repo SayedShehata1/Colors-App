@@ -40,7 +40,7 @@ export default function PaletteMetaForm({ palettes, handleSubmit, hideForm }) {
   return (
     <div>
       <Dialog open={stage === "emoji"}>
-        <Picker onSelect={savePalette} />
+        <Picker varies="false" onSelect={savePalette} />
       </Dialog>
       <Dialog open={stage === "form"} onClose={hideForm}>
         <DialogTitle>Choose a Palette Name</DialogTitle>

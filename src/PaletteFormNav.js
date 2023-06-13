@@ -1,4 +1,3 @@
-import MenuIcon from "@mui/icons-material/Menu";
 import { Button } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,8 +8,10 @@ import Typography from "@mui/material/Typography";
 import React, { Component } from "react";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { Link } from "react-router-dom";
+import { DRAWER_WIDTH } from "./constants";
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 
-const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -66,7 +67,7 @@ class PaletteFormNav extends Component {
               edge="start"
               sx={{ mr: 2, ...(open && { display: "none" }) }}
             >
-              <MenuIcon />
+              <AddToPhotosIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
               Create A Palette
