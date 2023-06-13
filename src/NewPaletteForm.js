@@ -11,7 +11,27 @@ import Button from "@mui/material/Button";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMoveImmutable } from "array-move";
 import ColorPickerForm from "./ColorPickerForm";
+import { withStyles } from "@material-ui/styles";
 
+const styles = {
+  container: {
+    width: "90%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "0 auto",
+  },
+  buttons: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  button: {
+    width: "45%",
+  },
+};
 const drawerWidth = 400;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -43,13 +63,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const NewPaletteForm = ({ savePalette, history, palettes }) => {
+const NewPaletteForm = ({ savePalette, history, palettes, classes }) => {
   const [open, setOpen] = React.useState(false);
   const [colors, setColors] = React.useState(palettes[0].colors);
 
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
 
+  // Methods
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -119,26 +140,37 @@ const NewPaletteForm = ({ savePalette, history, palettes }) => {
         {/* Content Goes Here */}
         {/* Drawer Content */}
 
-        <Typography variant="h4">Design Your Palette</Typography>
-        <div>
-          <Button variant="contained" color="secondary" onClick={clearColors}>
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addRandomColor}
-            disabled={paletteIsFull}
-          >
-            Random Color
-          </Button>
+        <div className={classes.container}>
+          <Typography variant="h4" align="center" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={clearColors}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={addRandomColor}
+              disabled={paletteIsFull}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
+            colors={colors}
+          />
         </div>
-        <ColorPickerForm
-          paletteIsFull={paletteIsFull}
-          addNewColor={addNewColor}
-          colors={colors}
-        />
       </Drawer>
+
       <Main open={open}>
         <DrawerHeader />
         <DraggableColorList
@@ -146,10 +178,11 @@ const NewPaletteForm = ({ savePalette, history, palettes }) => {
           removeColor={removeColor}
           axis="xy"
           onSortEnd={onSortEnd}
+          pressDelay={160}
         />
       </Main>
     </Box>
   );
 };
 
-export default NewPaletteForm;
+export default withStyles(styles)(NewPaletteForm);

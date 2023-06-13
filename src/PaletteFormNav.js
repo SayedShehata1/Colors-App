@@ -19,6 +19,11 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  height: "64px",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -66,8 +71,9 @@ class PaletteFormNav extends Component {
             <Typography variant="h6" noWrap component="div">
               Create A Palette
             </Typography>
-
-            {/* Save Palette Form */}
+          </Toolbar>
+          {/* Save Palette Form */}
+          <div>
             <ValidatorForm
               onSubmit={() => this.props.handleSubmit(newPaletteName)}
             >
@@ -82,13 +88,13 @@ class PaletteFormNav extends Component {
               <Button variant="contained" color="primary" type="submit">
                 Save Palette
               </Button>
-              <Link to="/" style={{ textDecoration: "none" }}>
-                <Button variant="contained" color="secondary">
-                  Go Back
-                </Button>
-              </Link>
             </ValidatorForm>
-          </Toolbar>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button variant="contained" color="secondary">
+                Go Back
+              </Button>
+            </Link>
+          </div>
         </AppBar>
       </div>
     );
