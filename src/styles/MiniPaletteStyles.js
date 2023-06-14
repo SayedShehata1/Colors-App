@@ -39,6 +39,19 @@ const styles = {
     position: "relative",
     marginBottom: "-3.5px",
   },
+
+  deleteIcon: {
+    color: "white",
+    backgroundColor: "#eb3d30",
+    width: "20px",
+    height: "20px",
+    position: "absolute",
+    padding: "10px",
+    right: "0px",
+    top: "0px",
+    zIndex: 10,
+    opacity: 0,
+  },
 };
 
 export default styles;
