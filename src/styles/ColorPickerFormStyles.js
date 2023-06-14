@@ -1,6 +1,6 @@
 const styles = {
   container: {
-    width: "100%",
+    width: "90%",
   },
   picker: {
     width: "100% !important",

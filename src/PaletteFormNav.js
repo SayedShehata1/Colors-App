@@ -10,8 +10,32 @@ import PaletteMetaForm from "./PaletteMetaForm";
 import { Link } from "react-router-dom";
 import { DRAWER_WIDTH } from "./constants";
 import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
-
+import { withStyles } from "@material-ui/styles";
+import sizes from "./styles/sizes";
 const drawerWidth = DRAWER_WIDTH;
+
+const styles = {
+  root: {
+    display: "flex",
+  },
+  navBtns: {
+    marginRight: "1rem",
+    "& a": {
+      textDecoration: "none",
+    },
+    [sizes.down("xs")]: {
+      marginRight: "0.5rem",
+    },
+  },
+  button: {
+    margin: "0 0.5rem !important",
+    [sizes.down("xs")]: {
+      margin: "0 0.2rem !important",
+      padding: "0.3rem !important",
+    },
+  },
+};
+
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -54,9 +78,9 @@ class PaletteFormNav extends Component {
     this.setState({ formShwoing: false });
   }
   render() {
-    const { open, palettes, handleSubmit } = this.props;
+    const { open, palettes, handleSubmit, classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <CssBaseline />
         <AppBar position="fixed" color="default" open={open}>
           <Toolbar>
@@ -74,10 +98,10 @@ class PaletteFormNav extends Component {
             </Typography>
           </Toolbar>
           {/* Save Palette Form */}
-          <div>
+          <div className={classes.navBtns}>
             <Link to="/" style={{ textDecoration: "none" }}>
               <Button
-                style={{ marginRight: "1rem" }}
+                className={classes.button}
                 variant="contained"
                 color="secondary"
               >
@@ -85,7 +109,7 @@ class PaletteFormNav extends Component {
               </Button>
             </Link>
             <Button
-              style={{ marginRight: "1rem" }}
+              className={classes.button}
               variant="contained"
               onClick={this.showForm}
               color="primary"
@@ -105,4 +129,4 @@ class PaletteFormNav extends Component {
     );
   }
 }
-export default PaletteFormNav;
+export default withStyles(styles)(PaletteFormNav);
