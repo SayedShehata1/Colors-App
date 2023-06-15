@@ -35,6 +35,7 @@ export default function PaletteMetaForm({ palettes, handleSubmit, hideForm }) {
       emoji: emoji.native,
     };
     handleSubmit(newPalette);
+    setStage("");
   };
 
   return (

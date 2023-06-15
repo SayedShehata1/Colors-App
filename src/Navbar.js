@@ -29,7 +29,7 @@ class Navbar extends Component {
     return (
       <header className={classes.Navbar}>
         <div className={classes.logo}>
-          <Link to="/">reactcolorpicker</Link>
+          <Link to="/">React Colors</Link>
         </div>
         {showingAllColors && (
           <div className="slider-container">
@@ -59,7 +59,6 @@ class Navbar extends Component {
           autoHideDuration={3000}
           message={
             <span id="message-id">
-              {" "}
               Format changed to {format.toLocaleUpperCase()}{" "}
             </span>
           }
