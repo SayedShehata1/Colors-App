@@ -10,6 +10,18 @@ const styles = {
       opacity: 0,
       transition: "opacity 500ms ease-out",
     },
+    ".PaletteList-createBtn-1bvm48j": {
+      textDecoration: "none",
+      backgroundColor: "rgba(215,222,225)",
+      padding: "10px",
+      fontSize: "1.2rem",
+      color: "#2e4357 !important",
+      fontWeight: "500",
+      transition: "all 0.5s",
+      "&:hover": {
+        backgroundColor: "rgba(215,222,225,0.8)",
+      },
+    },
   },
   root: {
     height: "100vh",
@@ -62,6 +74,10 @@ const styles = {
       gridTemplateColumns: "repeat(1, 100%)",
       gridGap: "1.4rem",
     },
+  },
+  createBtn: {
+    decoration: "none",
+    color: "red",
   },
 };
 export default styles;
