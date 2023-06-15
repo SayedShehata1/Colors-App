@@ -73,8 +73,17 @@ const NewPaletteForm = ({ savePalette, history, palettes, classes }) => {
   const addRandomColor = () => {
     //pick random color from existing palettes
     const allColors = palettes.map((p) => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicateColor = colors.some(
+        // eslint-disable-next-line no-loop-func
+        (color) => color.name === randomColor.name
+      );
+    }
     setColors([...colors, randomColor]);
   };
 
