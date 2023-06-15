@@ -78,7 +78,9 @@ class PaletteFormNav extends Component {
     this.setState({ formShwoing: false });
   }
   render() {
-    const { open, palettes, handleSubmit, classes } = this.props;
+    const { open, palettes, handleSubmit, classes, handleDrawerOpen } =
+      this.props;
+    const { formShwoing } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -87,7 +89,7 @@ class PaletteFormNav extends Component {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={this.props.handleDrawerOpen}
+              onClick={handleDrawerOpen}
               edge="start"
               sx={{ mr: 2, ...(open && { display: "none" }) }}
             >
@@ -118,7 +120,7 @@ class PaletteFormNav extends Component {
             </Button>
           </div>
         </AppBar>
-        {this.state.formShwoing && (
+        {formShwoing && (
           <PaletteMetaForm
             palettes={palettes}
             handleSubmit={handleSubmit}

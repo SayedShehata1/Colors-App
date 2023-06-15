@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import MiniPalette from "./MiniPalette";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles/PaletteListStyles";
-import { Link } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Dialog from "@mui/material/Dialog";
-
 import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
@@ -53,7 +52,6 @@ class PaletteList extends Component {
             {palettes.map((palette) => (
               <CSSTransition key={palette.id} classNames="fade" timeout={500}>
                 <MiniPalette
-                  // handleDelete={deletePalette}
                   openDialog={this.openDialog}
                   id={palette.id}
                   key={palette.id}

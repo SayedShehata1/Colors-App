@@ -5,13 +5,13 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import { withStyles } from "@material-ui/styles";
+import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMoveImmutable } from "array-move";
 import ColorPickerForm from "./ColorPickerForm";
-import { withStyles } from "@material-ui/styles";
 import styles from "./styles/NewPaletteFormStyles";
 import { DRAWER_WIDTH } from "./constants";
 
