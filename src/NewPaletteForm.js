@@ -14,6 +14,7 @@ import { arrayMoveImmutable } from "array-move";
 import ColorPickerForm from "./ColorPickerForm";
 import styles from "./styles/NewPaletteFormStyles";
 import { DRAWER_WIDTH } from "./constants";
+import seedColors from "./seedColors";
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -48,7 +49,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const NewPaletteForm = ({ savePalette, history, palettes, classes }) => {
   const [open, setOpen] = React.useState(false);
-  const [colors, setColors] = React.useState(palettes[0].colors);
+  const [colors, setColors] = React.useState(seedColors[0].colors);
 
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
